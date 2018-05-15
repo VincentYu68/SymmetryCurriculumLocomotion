@@ -1,0 +1,843 @@
+<?xml version="1.0" ?>
+<skel version="1.0">
+    <world name="world 1">
+        <physics>
+            <time_step>0.002</time_step>
+            <gravity>0 -9.81 0</gravity>
+            <collision_detector>dart</collision_detector>
+        </physics>
+
+        <skeleton name="ground skeleton">
+            <mobile>false</mobile>
+            <body name="ground">
+                <transformation>0 -0.025 0 0 0 0</transformation>
+                <visualization_shape>
+                    <transformation>0 0 0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>500.0 0.05 5.0</size>
+                        </box>
+                    </geometry>
+                    <color>0.7 0.7 0.7 1.0 </color>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0 0 0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>500.0 0.05 5.0</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <joint type="free" name="joint 1">
+                <parent>world</parent>
+                <child>ground</child>
+            </joint>
+        </skeleton>
+
+        <skeleton name="hexapod">
+            <transformation>0 0.1 0 0 0 0</transformation>
+            <body name="h_torso_aux">
+                <transformation> 0.0 0.34 0 0 0 0</transformation>
+                <inertia>
+                    <mass>0.0</mass>
+                    <offset>0.0 0 0.0</offset>
+                </inertia>
+            </body>
+
+            <body name="h_torso">
+                <transformation> 0.0 0.34 0 0 0 0</transformation>
+                <inertia>
+                    <mass>23.625</mass>
+                    <offset>0.0 0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.6 0.16 0.3</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.6 0.16 0.3</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+
+            <!-- Rear Right Leg -->
+            <body name="rear_upper_leg">
+                <transformation>-0.3 0.3 0.15 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.4</mass>
+                    <offset>0.0 0.0 0.2</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="rear_lower_leg">
+                <transformation>-0.3 0.3 0.6 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.1</mass>
+                    <offset>0.0 0.0 0.33</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="rear_foot">
+                <transformation>-0.3 0.3 1.28 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>0.605</mass>
+                    <offset>0.0 -0.0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <!-- Left Rear Leg -->
+            <body name="rear_upper_leg_left">
+                <transformation>-0.3 0.3 -0.15 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.4</mass>
+                    <offset>0.0 0.0 -0.2</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 -0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 -0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="rear_lower_leg_left">
+                <transformation>-0.3 0.3 -0.6 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.1</mass>
+                    <offset>0.0 0.0 -0.33</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 -0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 -0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="rear_foot_left">
+                <transformation>-0.3 0.3 -1.28 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>0.605</mass>
+                    <offset>0.0 -0.0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <!-- Middle Right Leg -->
+            <body name="middle_upper_leg">
+                <transformation>0.0 0.3 0.15 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.4</mass>
+                    <offset>0.0 0.0 0.2</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="middle_lower_leg">
+                <transformation>-0.0 0.3 0.6 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.1</mass>
+                    <offset>0.0 0.0 0.33</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="middle_foot">
+                <transformation>-0.0 0.3 1.28 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>0.605</mass>
+                    <offset>0.0 -0.0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <!-- Left Middle Leg -->
+            <body name="middle_upper_leg_left">
+                <transformation>-0.0 0.3 -0.15 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.4</mass>
+                    <offset>0.0 0.0 -0.2</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 -0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 -0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="middle_lower_leg_left">
+                <transformation>-0.0 0.3 -0.6 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.1</mass>
+                    <offset>0.0 0.0 -0.33</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 -0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 -0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="middle_foot_left">
+                <transformation>-0.0 0.3 -1.28 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>0.605</mass>
+                    <offset>0.0 -0.0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <!-- Front Right Leg -->
+            <body name="front_upper_leg">
+                <transformation>0.3 0.3 0.15 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.4</mass>
+                    <offset>0.0 0.0 0.2</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="front_lower_leg">
+                <transformation>0.3 0.3 0.6 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.1</mass>
+                    <offset>0.0 0.0 0.33</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="front_foot">
+                <transformation>0.3 0.3 1.28 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>0.605</mass>
+                    <offset>0.0 -0.0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <!-- Left Front Leg -->
+            <body name="front_upper_leg_left">
+                <transformation>0.3 0.3 -0.15 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.4</mass>
+                    <offset>0.0 0.0 -0.2</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 -0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 -0.2 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.1 0.1 0.4</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="front_lower_leg_left">
+                <transformation>0.3 0.3 -0.6 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>2.1</mass>
+                    <offset>0.0 0.0 -0.33</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 -0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 -0.33 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.15 0.1 0.7</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <body name="front_foot_left">
+                <transformation>0.3 0.3 -1.28 0.0 0.0 0.0</transformation>
+                <inertia>
+                    <mass>0.605</mass>
+                    <offset>0.0 -0.0 0.0</offset>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.0 0.0 0.0 0.0 0.0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.15 0.15 0.15</size>
+                        </ellipsoid>
+                    </geometry>
+                </collision_shape>
+            </body>
+
+            <!-- JOINT: Pelvis -->
+            <joint type="translational" name="j_torso">
+                <parent>world</parent>
+                <child>h_torso_aux</child>
+            </joint>
+
+            <joint type="euler" name="j_torso2">
+                <parent>h_torso_aux</parent>
+                <child>h_torso</child>
+                <axis_order>zyx</axis_order>
+            </joint>
+
+
+            <!-- JOINT: Rear Right Leg -->
+            <joint type="universal" name="j_rear_upper">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>h_torso</parent>
+                <child>rear_upper_leg</child>
+                <axis2>
+                    <xyz>1 0 0</xyz>
+		            <limit>
+                    	<lower>-1.5</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis>
+                    <xyz>0 1 0</xyz>
+		            <limit>
+                    	<lower>-1.2</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>-0.6 -1.0</init_pos>
+            </joint>
+
+            <joint type="revolute" name="j_rear_lower">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>rear_upper_leg</parent>
+                <child>rear_lower_leg</child>
+                <axis>
+                    <xyz>1.0 0.0 0.0</xyz>
+		        <limit>
+                    	<lower>0.0</lower>
+                    	<upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>1.8</init_pos>
+                <init_vel>0</init_vel>
+            </joint>
+
+            <joint type="weld" name="j_rear_foot">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>rear_lower_leg</parent>
+                <child>rear_foot</child>
+            </joint>
+
+            <!-- JOINT: Left Rear Leg -->
+            <joint type="universal" name="j_rear_upper_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>h_torso</parent>
+                <child>rear_upper_leg_left</child>
+                <axis2>
+                    <xyz>-1 0 0</xyz>
+		            <limit>
+                    	<lower>-1.5</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis>
+                    <xyz>0 -1 0</xyz>
+		            <limit>
+                    	<lower>-1.2</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>-0.6 -1.0</init_pos>
+            </joint>
+
+            <joint type="revolute" name="j_rear_lower_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>rear_upper_leg_left</parent>
+                <child>rear_lower_leg_left</child>
+                <axis>
+                    <xyz>-1.0 0.0 0.0</xyz>
+		        <limit>
+                    	<lower>0.0</lower>
+                    	<upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>1.8</init_pos>
+                <init_vel>0</init_vel>
+            </joint>
+
+            <joint type="weld" name="j_rear_foot_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>rear_lower_leg_left</parent>
+                <child>rear_foot_left</child>
+            </joint>
+
+            <!-- JOINT: Right Middle Leg -->
+            <joint type="universal" name="j_middle_upper">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>h_torso</parent>
+                <child>middle_upper_leg</child>
+                <axis2>
+                    <xyz>1 0 0</xyz>
+		            <limit>
+                    	<lower>-1.5</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis>
+                    <xyz>0 1 0</xyz>
+		            <limit>
+                    	<lower>-0.6</lower>
+                    	<upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>0.0 -1.0</init_pos>
+            </joint>
+
+            <joint type="revolute" name="j_middle_lower">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>middle_upper_leg</parent>
+                <child>middle_lower_leg</child>
+                <axis>
+                    <xyz>1.0 0.0 0.0</xyz>
+		        <limit>
+                    	<lower>0.0</lower>
+                    	<upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>1.8</init_pos>
+                <init_vel>0</init_vel>
+            </joint>
+
+            <joint type="weld" name="j_middle_foot">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>middle_lower_leg</parent>
+                <child>middle_foot</child>
+            </joint>
+
+            <!-- JOINT: Left Middle Leg -->
+            <joint type="universal" name="j_middle_upper_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>h_torso</parent>
+                <child>middle_upper_leg_left</child>
+                <axis2>
+                    <xyz>-1 0 0</xyz>
+		            <limit>
+                    	<lower>-1.5</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis>
+                    <xyz>0 -1 0</xyz>
+		            <limit>
+                    	<lower>-0.6</lower>
+                    	<upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>-0.0 -1.0</init_pos>
+            </joint>
+
+            <joint type="revolute" name="j_middle_lower_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>middle_upper_leg_left</parent>
+                <child>middle_lower_leg_left</child>
+                <axis>
+                    <xyz>-1.0 0.0 0.0</xyz>
+		        <limit>
+                    	<lower>0.0</lower>
+                    	<upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>1.8</init_pos>
+                <init_vel>0</init_vel>
+            </joint>
+
+            <joint type="weld" name="j_middle_foot_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>middle_lower_leg_left</parent>
+                <child>middle_foot_left</child>
+            </joint>
+
+            <!-- JOINT: Front Right Leg -->
+            <joint type="universal" name="j_front_upper">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>h_torso</parent>
+                <child>front_upper_leg</child>
+                <axis>
+                    <xyz>0 1 0</xyz>
+		            <limit>
+                    	<lower>0.0</lower>
+                    	<upper>1.2</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <xyz>1 0 0</xyz>
+		            <limit>
+                    	<lower>-1.5</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis2>
+                <init_pos>0.6 -1.0</init_pos>
+            </joint>
+
+            <joint type="revolute" name="j_front_lower">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>front_upper_leg</parent>
+                <child>front_lower_leg</child>
+                <axis>
+                    <xyz>1.0 0.0 0.0</xyz>
+		        <limit>
+                    	<lower>0.0</lower>
+                    	<upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>1.8</init_pos>
+                <init_vel>0</init_vel>
+            </joint>
+
+            <joint type="weld" name="j_front_foot">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>front_lower_leg</parent>
+                <child>front_foot</child>
+            </joint>
+
+            <!-- JOINT: Left Front Leg -->
+            <joint type="universal" name="j_front_upper_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>h_torso</parent>
+                <child>front_upper_leg_left</child>
+                <axis2>
+                    <xyz>-1 0 0</xyz>
+		            <limit>
+                    	<lower>-1.5</lower>
+                    	<upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis>
+                    <xyz>0 -1 0</xyz>
+		            <limit>
+                    	<lower>-0.0</lower>
+                    	<upper>1.2</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>0.6 -1.0</init_pos>
+            </joint>
+
+            <joint type="revolute" name="j_front_lower_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>front_upper_leg_left</parent>
+                <child>front_lower_leg_left</child>
+                <axis>
+                    <xyz>-1.0 0.0 0.0</xyz>
+		        <limit>
+                    	<lower>0.0</lower>
+                    	<upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>5.0</damping>
+                    </dynamics>
+                </axis>
+                <init_pos>1.8</init_pos>
+                <init_vel>0</init_vel>
+            </joint>
+
+            <joint type="weld" name="j_front_foot_left">
+                <transformation>0.0 0.0 0.0 0.0 0.0 0.0</transformation>
+                <parent>front_lower_leg_left</parent>
+                <child>front_foot_left</child>
+            </joint>
+
+        </skeleton>
+
+    </world>
+</skel>
+
+
+

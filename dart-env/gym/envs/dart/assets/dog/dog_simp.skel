@@ -1,0 +1,1755 @@
+<?xml version="1.0" ?>
+<skel version="1.0">
+    <world name="world 1">
+        <physics>
+            <time_step>0.002</time_step>
+            <gravity>0 -9.81 0</gravity>
+            <collision_detector>dart</collision_detector>
+        </physics>
+
+        <skeleton name="ground skeleton">
+            <mobile>false</mobile>
+            <body name="ground">
+                <transformation>0 -0.02 0 0 0 0</transformation>
+                <visualization_shape>
+                    <transformation>0 0 0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>500.0 0.04 2.0</size>
+                        </box>
+                    </geometry>
+                    <color>0.7 0.7 0.7 1.0 </color>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0 0 0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>500.0 0.04 2.0</size>
+                        </box>
+                    </geometry>
+                </collision_shape>
+            </body>
+            <joint type="free" name="joint 1">
+                <parent>world</parent>
+                <child>ground</child>
+            </joint>
+        </skeleton>
+
+        <skeleton name="dog">
+            <transformation>0 -0.45 0 0 -3.141592653589 0</transformation>
+
+            <body name="pelvis_aux">
+                <transformation>0.0 1.035 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.0</mass>
+                    <offset>0.0 0 0.0</offset>
+                </inertia>
+            </body>
+
+            <body name="pelvis">
+                <transformation>0.0 1.035 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>3.5</mass>
+                    <offset>0 0.0 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.004</ixx>
+                    <iyy>0.0045</iyy>
+                    <izz>0.0045</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 0.0 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/pelvis.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 0.0 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.16 0.08 0.08</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 0.0 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/pelvis.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="back1">
+                <transformation>-0.06 1.06 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.5</mass>
+                    <offset>-0.04 -0.043 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.003</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.04 -0.043 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back1.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.04 -0.023 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.12 0.12 0.12</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.04 -0.043 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back1.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="back2">
+                <transformation>-0.125 1.056 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.8</mass>
+                    <offset>-0.035 -0.06 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0035</ixx>
+                    <iyy>0.0035</iyy>
+                    <izz>0.0035</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.035 -0.06 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back2.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.025 -0.05 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.13 0.13 0.13</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.035 -0.06 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back2.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="back3">
+                <transformation>-0.19 1.046 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>2.0</mass>
+                    <offset>-0.025 -0.072 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.004</ixx>
+                    <iyy>0.004</iyy>
+                    <izz>0.004</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.025 -0.072 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back3.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.015 -0.062 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.14 0.14 0.14</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.025 -0.072 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back3.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="back4">
+                <transformation>-0.24 1.033 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>2.14</mass>
+                    <offset>-0.025 -0.084 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0045</ixx>
+                    <iyy>0.0045</iyy>
+                    <izz>0.0045</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.025 -0.084 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back4.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.025 -0.064 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.16 0.16 0.16</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.025 -0.084 0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back4.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="back5">
+                <transformation>-0.329 1.007 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>5.1</mass>
+                    <offset>-0.086 -0.056 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.01</ixx>
+                    <iyy>0.012</iyy>
+                    <izz>0.012</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.086 -0.056 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back5.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.086 -0.056 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.24 0.24 0.24</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.086 -0.056 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/back5.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="neck1">
+                <transformation>-0.505 1.009 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.0</mass>
+                    <offset>-0.015 0.02 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.003</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/neck1.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.06 0.06 0.06</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/neck1.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="neck2">
+                <transformation>-0.535 1.049 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.0</mass>
+                    <offset>-0.015 0.02 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.003</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/neck2.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.06 0.06 0.06</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/neck2.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="neck3">
+                <transformation>-0.565 1.089 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.0</mass>
+                    <offset>-0.015 0.02 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.003</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/neck3.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <ellipsoid>
+                            <size>0.06 0.06 0.06</size>
+                        </ellipsoid>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.015 0.02 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/neck3.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="head">
+                <transformation>-0.598 1.109 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.17</mass>
+                    <offset>-0.04 0.03 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.003</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.04 0.03 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/head.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.06 0.03 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.24 0.12 0.12</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.04 0.03 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/head.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lHumerus">
+                <transformation>-0.475 0.997 0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.2</mass>
+                    <offset>-0.006 -0.12 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.006 -0.12 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/humerus.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.006 -0.12 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.05 0.16 0.05</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.006 -0.12 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/humerus.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rHumerus">
+                <transformation>-0.475 0.997 -0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.2</mass>
+                    <offset>-0.006 -0.12 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.006 -0.12 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/humerus.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.006 -0.12 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.05 0.16 0.05</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.006 -0.12 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/humerus.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lForearm">
+                <transformation>-0.481 0.787 0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.2</mass>
+                    <offset>0.004 -0.086 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.004 -0.086 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/ulna.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.004 -0.086 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.05 0.16 0.05</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.004 -0.086 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/ulna.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rForearm">
+                <transformation>-0.481 0.787 -0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.2</mass>
+                    <offset>0.004 -0.086 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.004 -0.086 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/ulna.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.004 -0.086 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.05 0.16 0.05</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.004 -0.086 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/ulna.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lMetacarpals">
+                <transformation>-0.477 0.605 0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.62</mass>
+                    <offset>0 -0.04 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0025</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.0025</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.04 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.04 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.04 0.06 0.04</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 -0.04 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rMetacarpals">
+                <transformation>-0.477 0.605 -0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.62</mass>
+                    <offset>0 -0.04 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0025</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.0025</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.04 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.04 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.04 0.06 0.04</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 -0.04 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lFingers">
+                <transformation>-0.477 0.515 0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>-0.012 -0.014 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.002</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.012 -0.014 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.019 -0.014 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.07 0.03 0.06</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.012 -0.014 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rFingers">
+                <transformation>-0.477 0.515 -0.054 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>-0.012 -0.014 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.002</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.012 -0.014 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.019 -0.014 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.07 0.03 0.06</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.012 -0.014 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/frontToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lFemur">
+                <transformation>0.009 1.017 0.038 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.6</mass>
+                    <offset>0 -0.104 0.005</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0063</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.0063</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0 -0.104 0.005 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/femur.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.119 0.005 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.06 0.22 0.06</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0 -0.104 0.005 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/femur.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rFemur">
+                <transformation>0.009 1.017 -0.038 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.6</mass>
+                    <offset>0 -0.104 -0.005</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0063</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.0063</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0 -0.104 -0.005 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/femur.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.119 -0.005 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.06 0.22 0.06</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0 -0.104 -0.005 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/femur.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lShin">
+                <transformation>0.009 0.809 0.043 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.2</mass>
+                    <offset>0 -0.098 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.098 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tibia.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.118 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.05 0.19 0.05</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 -0.098 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tibia.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rShin">
+                <transformation>0.009 0.809 -0.043 0 0.0 0</transformation>
+                <inertia>
+                    <mass>1.2</mass>
+                    <offset>0 -0.098 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.003</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.003</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.098 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tibia.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.118 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.05 0.19 0.05</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 -0.098 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tibia.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lMetatarsals">
+                <transformation>0.009 0.615 0.043 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.62</mass>
+                    <offset>0 -0.043 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0025</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.0025</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.043 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.058 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.04 0.07 0.04</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 -0.043 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rMetatarsals">
+                <transformation>0.009 0.615 -0.043 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.62</mass>
+                    <offset>0 -0.043 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.0025</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.0025</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.0 -0.043 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>0.0 -0.058 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.04 0.07 0.04</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>0.0 -0.043 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearFoot.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="lToes">
+                <transformation>0.009 0.512 0.043 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>-0.024 -0.017 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.002</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.024 -0.017 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.024 -0.017 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.06 0.035 0.06</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.024 -0.017 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="rToes">
+                <transformation>0.009 0.512 -0.043 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>0 0.0 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.002</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>-0.024 -0.017 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+                <collision_shape>
+                    <transformation>-0.024 -0.017 0.0 0 0 0</transformation>
+                    <geometry>
+                        <box>
+                            <size>0.06 0.035 0.06</size>
+                        </box>
+                    </geometry>
+                    <color>1 0 0 0.2</color>
+                </collision_shape>
+                <!--<collision_shape>
+                    <transformation>-0.024 -0.017 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/rearToes.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </collision_shape>-->
+            </body>
+
+            <body name="tail1">
+                <transformation>0.07 1.001 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>0.035 -0.015 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.001</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.035 -0.015 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tail.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+            </body>
+
+            <body name="tail2">
+                <transformation>0.14 0.971 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>0.035 -0.015 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.001</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.035 -0.015 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tail.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+            </body>
+
+            <body name="tail3">
+                <transformation>0.21 0.941 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>0.035 -0.015 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.001</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.035 -0.015 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tail.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+            </body>
+
+            <body name="tail4">
+                <transformation>0.28 0.911 0.0 0 0.0 0</transformation>
+                <inertia>
+                    <mass>0.2</mass>
+                    <offset>0.035 -0.015 0</offset>
+                    <moment_of_inertia>
+                    <ixx>0.001</ixx>
+                    <iyy>0.002</iyy>
+                    <izz>0.002</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                    </moment_of_inertia>
+                </inertia>
+                <visualization_shape>
+                    <transformation>0.035 -0.015 0.0 0 0 0</transformation>
+                    <geometry>
+                        <mesh>
+                            <file_name>dogSimple/tail.obj</file_name>
+                            <scale>1.0 1.0 1.0</scale>
+                        </mesh>
+                    </geometry>
+                </visualization_shape>
+            </body>
+
+
+            <joint type="translational" name="j_pelvis">
+                <parent>world</parent>
+                <child>pelvis_aux</child>
+            </joint>
+
+            <joint type="euler" name="j_pelvis2">
+                <parent>pelvis_aux</parent>
+                <child>pelvis</child>
+                <axis_order>zyx</axis_order>
+            </joint>
+
+            <joint type="euler" name="lHip">
+                <parent>pelvis</parent>
+                <child>lFemur</child>
+                <axis_order>zyx</axis_order>
+                <axis>
+                    <limit>
+                        <lower>-1.6</lower>
+                        <upper>1.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis3>
+                    <limit>
+                        <lower>-1.0</lower>
+                        <upper>0.3</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis3>
+            </joint>
+
+            <joint type="euler" name="rHip">
+                <parent>pelvis</parent>
+                <child>rFemur</child>
+                <axis_order>zyx</axis_order>
+                <axis>
+                    <limit>
+                        <lower>-1.6</lower>
+                        <upper>1.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis3>
+                    <limit>
+                        <lower>-0.3</lower>
+                        <upper>1.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis3>
+            </joint>
+
+            <joint type="euler" name="lShoulder">
+                <parent>back5</parent>
+                <child>lHumerus</child>
+                <axis_order>zyx</axis_order>
+                <axis>
+                    <limit>
+                        <lower>-3.0</lower>
+                        <upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis3>
+                    <limit>
+                        <lower>-1.0</lower>
+                        <upper>0.1</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis3>
+            </joint>
+
+            <joint type="euler" name="rShoulder">
+                <parent>back5</parent>
+                <child>rHumerus</child>
+                <axis_order>zyx</axis_order>
+                <axis>
+                    <limit>
+                        <lower>-3.0</lower>
+                        <upper>3.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis3>
+                    <limit>
+                        <lower>-0.1</lower>
+                        <upper>1.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis3>
+            </joint>
+
+            <joint type="revolute" name="lElbow">
+                <parent>lHumerus</parent>
+                <child>lForearm</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-2.6</lower>
+                        <upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="revolute" name="rElbow">
+                <parent>rHumerus</parent>
+                <child>rForearm</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-2.6</lower>
+                        <upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="revolute" name="lWrist">
+                <parent>lForearm</parent>
+                <child>lMetacarpals</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-0.1</lower>
+                        <upper>2.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="revolute" name="rWrist">
+                <parent>rForearm</parent>
+                <child>rMetacarpals</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-0.1</lower>
+                        <upper>2.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="universal" name="lFingerJoint">
+                <parent>lMetacarpals</parent>
+                <child>lFingers</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-0.8</lower>
+                        <upper>0.8</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <xyz>1.0 0.0 0.0</xyz>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+            </joint>
+
+            <joint type="universal" name="rFingerJoint">
+                <parent>rMetacarpals</parent>
+                <child>rFingers</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-0.8</lower>
+                        <upper>0.8</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <xyz>1.0 0.0 0.0</xyz>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+            </joint>
+
+            <joint type="weld" name="backJ1">
+                <parent>pelvis</parent>
+                <child>back1</child>
+            </joint>
+
+            <joint type="weld" name="backJ2">
+                <parent>back1</parent>
+                <child>back2</child>
+            </joint>
+
+            <joint type="euler" name="backJ3">
+                <parent>back2</parent>
+                <child>back3</child>
+                <axis_order>zyx</axis_order>
+                <axis>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis3>
+                    <limit>
+                        <lower>-0.6</lower>
+                        <upper>0.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis3>
+            </joint>
+
+            <joint type="weld" name="backJ4">
+                <parent>back3</parent>
+                <child>back4</child>
+            </joint>
+
+            <joint type="weld" name="backJ5">
+                <parent>back4</parent>
+                <child>back5</child>
+            </joint>
+
+            <joint type="weld" name="neckJ1">
+                <parent>back5</parent>
+                <child>neck1</child>
+            </joint>
+
+            <joint type="weld" name="neckJ2">
+                <parent>neck1</parent>
+                <child>neck2</child>
+            </joint>
+
+            <joint type="weld" name="neckJ3">
+                <parent>neck2</parent>
+                <child>neck3</child>
+            </joint>
+
+            <joint type="weld" name="neckJ4">
+                <parent>neck3</parent>
+                <child>head</child>
+            </joint>
+
+            <joint type="revolute" name="lKnee">
+                <parent>lFemur</parent>
+                <child>lShin</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>0.0</lower>
+                        <upper>3.1</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="revolute" name="rKnee">
+                <parent>rFemur</parent>
+                <child>rShin</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>0.0</lower>
+                        <upper>3.1</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="revolute" name="lAnkle">
+                <parent>lShin</parent>
+                <child>lMetatarsals</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-3.1</lower>
+                        <upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+            <joint type="revolute" name="rAnkle">
+                <parent>rShin</parent>
+                <child>rMetatarsals</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-3.1</lower>
+                        <upper>0.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+            </joint>
+
+             <joint type="revolute" name="lToeJoint">
+                <parent>lMetatarsals</parent>
+                <child>lToes</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-0.8</lower>
+                        <upper>1.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis1>
+                    <xyz>1.0 0.0 0.0</xyz>
+                    <limit>
+                        <lower>-1.0</lower>
+                        <upper>1.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis1>
+            </joint>
+
+            <joint type="revolute" name="rToeJoint">
+                <parent>rMetatarsals</parent>
+                <child>rToes</child>
+                <axis>
+                    <xyz>0.0 0.0 1.0</xyz>
+                    <limit>
+                        <lower>-0.8</lower>
+                        <upper>1.6</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis1>
+                    <xyz>1.0 0.0 0.0</xyz>
+                    <limit>
+                        <lower>-1.0</lower>
+                        <upper>1.0</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis1>
+            </joint>
+
+            <joint type="euler" name="tailJ1">
+                <parent>pelvis</parent>
+                <child>tail1</child>
+                <axis_order>zyx</axis_order>
+                <axis>
+                    <limit>
+                        <lower>-0.5</lower>
+                        <upper>0.5</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis>
+                <axis2>
+                    <limit>
+                        <lower>-0.5</lower>
+                        <upper>0.5</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis2>
+                <axis3>
+                    <limit>
+                        <lower>-0.5</lower>
+                        <upper>0.5</upper>
+                    </limit>
+                    <dynamics>
+                        <damping>3.0</damping>
+                    </dynamics>
+                </axis3>
+            </joint>
+
+            <joint type="weld" name="tailJ2">
+                <parent>tail1</parent>
+                <child>tail2</child>
+            </joint>
+
+            <joint type="weld" name="tailJ3">
+                <parent>tail2</parent>
+                <child>tail3</child>
+            </joint>
+
+            <joint type="weld" name="tailJ4">
+                <parent>tail3</parent>
+                <child>tail4</child>
+            </joint>
+        </skeleton>
+
+    </world>
+</skel>
+
