@@ -9,6 +9,8 @@ import sys, os, time, errno
 import joblib
 import numpy as np
 
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from gym import wrappers
 import tensorflow as tf
