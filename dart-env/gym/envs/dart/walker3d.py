@@ -267,9 +267,9 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
 
         s = self.state_vector()
         done = not (np.isfinite(s).all() and (np.abs(s[2:]) < 100).all() and
-                    (height > 1.0) and (height < 3.0) and (abs(ang_cos_uwd) < 100000.2) and (
-                            abs(ang_cos_fwd) < 100000.2)
-                    and np.abs(angle) < 100000.1 and np.abs(self.robot_skeleton.q[5]) < 100000.2 and np.abs(
+                    (height > 1.0) and (height < 3.0) and (abs(ang_cos_uwd) < 1.2) and (
+                            abs(ang_cos_fwd) < 1.2)
+                    and np.abs(angle) < 1.1 and np.abs(self.robot_skeleton.q[5]) < 1.2 and np.abs(
                     side_deviation) < 900000.9)
 
         self.stepwise_rewards.append(reward)
