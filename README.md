@@ -21,7 +21,7 @@ pip install -e .
 To test the code on a biped walking robot, run the following command from the project directory:
 
 ```bash
-mpirun -np 8 python -m baselines.baselines.ppo1.run_walker3d_staged_learning
+mpirun -np 8 python -m baselines.ppo1.run_walker3d_staged_learning
 ```
 
 The training results will be saved to data/. The final policy is saved as policy_params.pkl. You can also find the intermediate policies in the folders organized by the corresponding curriculums. To test a policy, run:
