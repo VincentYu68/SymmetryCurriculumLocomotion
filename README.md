@@ -58,7 +58,9 @@ For **observation_permutation** and **action_permutation**, they are two vectors
 
 For a newly created dart-env environment, you can use [examine_skel.py](baselines/examine_skel.py) to test the model configurations, which I found to be helpful in debugging joint limits.
 
+Refer to [run_walker3d_staged_learning.py](baselines/baselines/ppo1/run_walker3d_staged_learning.py) for an example on how to setup the training script for the biped walking robot.
+
+
 ## ODE Internal Error
 If you see errors like: ODE INTERNAL ERROR 1: assertion "d[i] != dReal(0.0)" failed in _dLDLTRemove(), try downloading [lcp.cpp](https://drive.google.com/file/d/1MCho3QBtyPhSoKNV77VFOvCqsMJPk3NF/view) and replace the one in dart/external/odelcpsolver/ with it. Recompile Dart and Pydart2 afterward and the issue should be gone.
 
-Refer to [run_walker3d_staged_learning.py](baselines/baselines/ppo1/run_walker3d_staged_learning.py) for an example on how to setup the training script for the biped walking robot.
