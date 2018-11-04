@@ -4,8 +4,6 @@ echo "Install pre-requisites"
 apt-get update \
     && apt-get install -y libav-tools \
     python-numpy \
-    python-scipy \
-    python-pyglet \
     python-setuptools \
     libpq-dev \
     libjpeg-dev \
@@ -23,10 +21,10 @@ apt-get update \
     python3-dev  \
     libode-dev
 
-apt-add-repository ppa:libccd-debs
-apt-add-repository ppa:fcl-debs
-apt-add-repository ppa:dartsim
-apt-get update
+sudo apt-get install build-essential cmake pkg-config git
+sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
+sudo apt-get install libopenscenegraph-dev
+
 apt-get install swig
 apt-get install swig python-pip python-qt4 python-qt4-dev python-qt4-gl
 apt-get install python3-pip python3-pyqt4 python3-pyqt4.qtopengl
@@ -35,8 +33,8 @@ echo "Start Dart Installation"
 
 # install dart
 git clone https://github.com/dartsim/dart.git
-git checkout tags/v6.4.0
 cd dart
+git checkout tags/v6.4.0
 mkdir build && cd build
 cmake ..
 make -j4
