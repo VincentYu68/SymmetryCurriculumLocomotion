@@ -30,7 +30,7 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
 
         self.target_ang = None
 
-        self.assist_timeout = 0.0
+        self.assist_timeout = 10.0
         self.assist_prob = 1.0  # probability of providing assistance
         self.assist_schedule = [[0.0, [2000, 2000]], [3.0, [1500, 1500]], [6.0, [1125.0, 1125.0]]]
 
@@ -270,7 +270,7 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
                     (height > 1.0) and (height < 3.0) and (abs(ang_cos_uwd) < 1.2) and (
                             abs(ang_cos_fwd) < 1.2)
                     and np.abs(angle) < 1.1 and np.abs(self.robot_skeleton.q[5]) < 1.2 and np.abs(
-                    side_deviation) < 900000.9)
+                    side_deviation) < 0.9)
 
         self.stepwise_rewards.append(reward)
 
