@@ -65,14 +65,14 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 echo "Start Baselines Installation"
 
 cd ../baselines
-pip3 install -e .
+sudo pip3 install -e .
 
 export PYTHONPATH=$PWD:$PYTHONPATH
 
 echo "Start DartEnv Installation"
 
 cd ../dart-env
-pip3 install -e .
+sudo pip3 install -e .
 
 cd ..
 
