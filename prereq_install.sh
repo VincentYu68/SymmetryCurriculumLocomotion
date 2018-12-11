@@ -72,6 +72,7 @@ export PYTHONPATH=$PWD:$PYTHONPATH
 echo "Start DartEnv Installation"
 
 cd ../dart-env
+sudo pip3 uninstall -y gym
 sudo pip3 install -e .
 
 cd ..
