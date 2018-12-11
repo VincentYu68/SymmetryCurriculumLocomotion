@@ -22,18 +22,18 @@ apt-get update \
     python3-dev  \
     libode-dev
 
-sudo apt-get install build-essential cmake pkg-config git
-sudo apt-get install libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
-sudo apt-get install libopenscenegraph-dev
-sudo apt-get install libbullet-dev
-sudo apt-get install liburdfdom-dev
-sudo apt-get install libnlopt-dev
-sudo apt-get install libxi-dev libxmu-dev freeglut3-dev
-sudo apt-get install libtinyxml2-dev
+sudo apt-get install -y build-essential cmake pkg-config git
+sudo apt-get install -y libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
+sudo apt-get install -y libopenscenegraph-dev
+sudo apt-get install -y libbullet-dev
+sudo apt-get install -y liburdfdom-dev
+sudo apt-get install -y libnlopt-dev
+sudo apt-get install -y libxi-dev libxmu-dev freeglut3-dev
+sudo apt-get install -y libtinyxml2-dev
 
-apt-get install swig
-apt-get install swig python-pip python-qt4 python-qt4-dev python-qt4-gl
-apt-get install python3-pip python3-pyqt4 python3-pyqt4.qtopengl
+apt-get install -y swig
+apt-get install -y swig python-pip python-qt4 python-qt4-dev python-qt4-gl
+apt-get install -y python3-pip python3-pyqt4 python3-pyqt4.qtopengl
 
 pip3 install numpy
 
