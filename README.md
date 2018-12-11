@@ -15,6 +15,15 @@ cd baselines
 pip install -e .
 ```
 
+## Install from script
+
+The script below has been tested on a clean Ubuntu 16.04 computer.
+
+```bash
+sudo -s
+source prereq_install.sh
+exit
+```
 
 ## How to use
 
