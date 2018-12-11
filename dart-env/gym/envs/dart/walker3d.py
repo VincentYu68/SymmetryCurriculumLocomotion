@@ -20,6 +20,7 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
         self.init_tv = 0.0
         self.final_tv = 1.0
         self.tv_endtime = 0.5
+        self.alive_bonus = 4.0
         self.smooth_tv_change = True
         self.rand_target_vel = False
         self.init_push = False
@@ -30,7 +31,7 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
 
         self.target_ang = None
 
-        self.assist_timeout = 10.0
+        self.assist_timeout = 0.0
         self.assist_prob = 1.0  # probability of providing assistance
         self.assist_schedule = [[0.0, [2000, 2000]], [3.0, [1500, 1500]], [6.0, [1125.0, 1125.0]]]
 
@@ -52,6 +53,7 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
 
         self.energy_weight = 0.3
         self.vel_reward_weight = 3.0
+        self.foot_lift_weight = 5.0
 
         self.local_spd_curriculum = True
         self.anchor_kp = np.array([0, 0]) * 1.0
@@ -215,7 +217,7 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
                     self.contact_info[1] = 1
                     r_foot_force += contact.force
 
-        alive_bonus = 4.0
+
         vel = (posafter - posbefore) / self.dt
         self.vel_cache.append(vel)
         self.target_vel_cache.append(self.target_vel)
@@ -255,11 +257,11 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
                   1.0 * np.abs(self.robot_skeleton.q[5])
 
         jump_rew = 10.0 * np.max([(height - 1.3), 0])
-        foot_rew = 5 * (np.max(
+        foot_rew = self.foot_lift_weight * (np.max(
             [self.robot_skeleton.bodynode('h_thigh').C[1], self.robot_skeleton.bodynode('h_thigh_left').C[1]]) - 0.8)
 
-        reward = vel_rew + alive_bonus - action_pen - deviation_pen - rot_pen  # + jump_rew + ang_vel_rew# - contact_pen
-        pos_rew = alive_bonus - deviation_pen
+        reward = vel_rew + self.alive_bonus - action_pen - deviation_pen - rot_pen + foot_rew # + jump_rew + ang_vel_rew# - contact_pen
+        pos_rew = self.alive_bonus - deviation_pen
         neg_pen = vel_rew - action_pen
 
         self.t += self.dt
