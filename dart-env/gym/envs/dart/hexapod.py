@@ -45,6 +45,7 @@ class DartHexapodEnv(dart_env.DartEnv, utils.EzPickle):
         self.previous_control = None
 
         self.energy_weight = 0.3
+        self.alive_bonus = 7.0
 
         self.pd_vary_end = self.target_vel * 6.0
         self.current_pd = self.init_balance_pd
@@ -228,7 +229,6 @@ class DartHexapodEnv(dart_env.DartEnv, utils.EzPickle):
                 else:
                     body_hit_ground = True
 
-        alive_bonus = 7.0
         vel = (posafter - posbefore) / self.dt
 
         self.vel_cache.append(vel)
@@ -247,7 +247,7 @@ class DartHexapodEnv(dart_env.DartEnv, utils.EzPickle):
 
         rot_pen = 1.0 * (abs(ang_cos_uwd)) + 1.0 * (abs(ang_cos_fwd))  # + 0.5 * (abs(ang_cos_ltl))
         #spine_pen += 0.05 * np.sum(np.abs(self.robot_skeleton.q[[8, 14]]))
-        reward = vel_rew + alive_bonus - action_pen - deviation_pen - rot_pen
+        reward = vel_rew + self.alive_bonus - action_pen - deviation_pen - rot_pen
 
         self.t += self.dt
         self.cur_step += 1

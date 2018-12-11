@@ -80,7 +80,7 @@ def train_mirror_sig(env, num_timesteps, seed, obs_perm, act_perm):
         if iter_num == 0:
             reward_threshold = 0.7 * rew
         if last_iter:
-            reward_threshold = None
+            break
         iter_num += 1
 
         opt_variable = opt_pi.get_variables()

@@ -49,6 +49,7 @@ class DartDogRobotEnv(dart_env.DartEnv, utils.EzPickle):
         self.previous_control = None
 
         self.energy_weight = 0.35
+        self.alive_bonus = 11.0
 
         self.pd_vary_end = self.target_vel * 6.0
         self.current_pd = self.init_balance_pd
@@ -239,7 +240,7 @@ class DartDogRobotEnv(dart_env.DartEnv, utils.EzPickle):
         else:
             self.enforce_target_vel = True
 
-        alive_bonus = 11.0
+
         vel = (posafter - posbefore) / self.dt
 
         self.vel_cache.append(vel)
@@ -259,7 +260,7 @@ class DartDogRobotEnv(dart_env.DartEnv, utils.EzPickle):
         deviation_pen = 3 * abs(side_deviation)
 
         rot_pen = 1.0 * abs(self.robot_skeleton.q[3]) + 0.5 * abs(self.robot_skeleton.q[4]) + 1.5 * abs(self.robot_skeleton.q[5])
-        reward = vel_rew + alive_bonus - action_pen - deviation_pen - rot_pen
+        reward = vel_rew + self.alive_bonus - action_pen - deviation_pen - rot_pen
 
         self.t += self.dt
         self.cur_step += 1
