@@ -22,6 +22,7 @@ apt-get update \
     python3-dev  \
     libode-dev
 
+
 sudo apt-get install -y build-essential cmake pkg-config git
 sudo apt-get install -y libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
 sudo apt-get install -y libopenscenegraph-dev
@@ -63,8 +64,10 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 echo "Start Baselines Installation"
 
-cd baselines
+cd ../baselines
 pip3 install -e .
+
+export PYTHONPATH=$PWD:$PYTHONPATH
 
 echo "Start DartEnv Installation"
 
