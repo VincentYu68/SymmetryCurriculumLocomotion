@@ -29,6 +29,8 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
         self.avg_rew_weighting = []
         self.vel_cache = []
 
+        self.reset_range = 0.05
+
         self.target_ang = None
 
         self.assist_timeout = 0.0
@@ -279,6 +281,8 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
         broke_sim = False
         if not (np.isfinite(s).all() and (np.abs(s[2:]) < 100).all()):
             broke_sim = True
+        if broke_sim:
+            reward = 0
 
         ob = self._get_obs()
 
@@ -306,8 +310,8 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
 
     def reset_model(self):
         self.dart_world.reset()
-        qpos = self.robot_skeleton.q + self.np_random.uniform(low=-.05, high=.05, size=self.robot_skeleton.ndofs)
-        qvel = self.robot_skeleton.dq + self.np_random.uniform(low=-.05, high=.05, size=self.robot_skeleton.ndofs)
+        qpos = self.robot_skeleton.q + self.np_random.uniform(low=-self.reset_range, high=self.reset_range, size=self.robot_skeleton.ndofs)
+        qvel = self.robot_skeleton.dq + self.np_random.uniform(low=-self.reset_range, high=self.reset_range, size=self.robot_skeleton.ndofs)
 
         if self.rand_target_vel:
             self.target_vel = np.random.uniform(0.8, 2.5)
@@ -319,8 +323,9 @@ class DartWalker3dEnv(dart_env.DartEnv, utils.EzPickle):
             self.init_balance_pd = chosen_curriculum[0]
             self.init_vel_pd = chosen_curriculum[1]
 
+        qpos[3] -= 0.05
         if self.init_push:
-            qpos[0] = self.target_vel
+            qvel[0] = self.target_vel
         self.set_state(qpos, qvel)
         self.t = 0
         self.cur_step = 0

@@ -78,16 +78,74 @@ if __name__ == '__main__':
 
     if hasattr(env.env, 'disableViewer'):
         env.env.disableViewer = False
-        '''if hasattr(env.env, 'resample_MP'):
-        env.env.resample_MP = False'''
+
+    # manually set the target velocities for different tasks
+    if len(sys.argv) > 2:
+        policy_directory = '/'.join(sys.argv[2].split('/')[0:-1])+'/' # put data back to the folder that stores the policies
+        if sys.argv[2][0] == '/':
+            policy_directory = '/' + policy_directory
+
+        save_directory = policy_directory + '/stats'
+
+        try:
+            os.makedirs(save_directory)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
+        if sys.argv[1] == 'DartWalker3d-v1':
+            env.env.assist_timeout = 0.0
+            if 'walk' in sys.argv[2]:    # walk task
+                env.env.final_tv = 1.0
+                env.env.tv_endtime = 0.5
+            if 'run' in sys.argv[2]:    # run task
+                env.env.final_tv = 5.0
+                env.env.tv_endtime = 2.0
+
+        if sys.argv[1] == 'DartHumanWalker-v1':
+            env.env.assist_timeout = 0
+            if 'walk' in sys.argv[2]:    # walk task
+                env.env.final_tv = 1.5
+                env.env.tv_endtime = 0.5
+            if 'walk_back' in sys.argv[2]:    # walk back task
+                env.env.final_tv = -1.5
+                env.env.tv_endtime = 0.5
+            if 'run' in sys.argv[2]:    # run task
+                env.env.final_tv = 5.0
+                env.env.tv_endtime = 3.0
+
+        if sys.argv[1] == 'DartDogRobot-v1':
+            env.env.assist_timeout = 0.0
+            if 'walk' in sys.argv[2]:    # walk task
+                env.env.final_tv = 2.0
+                env.env.tv_endtime = 1.0
+            if 'run' in sys.argv[2]:    # run task
+                env.env.final_tv = 7.0
+                env.env.tv_endtime = 3.0
+
+        if sys.argv[1] == 'DartHexapod-v1':
+            env.env.assist_timeout = 0.0
+            if 'walk' in sys.argv[2]:    # walk task
+                env.env.final_tv = 2.0
+                env.env.tv_endtime = 1.0
+            if 'run' in sys.argv[2]:    # run task
+                env.env.final_tv = 4.0
+                env.env.tv_endtime = 2.0
+
+
 
     record = False
     if len(sys.argv) > 3:
         record = int(sys.argv[3]) == 1
     if record:
-        env_wrapper = wrappers.Monitor(env, 'data/videos/', force=True)
+        env_wrapper = wrappers.Monitor(env, save_directory, force=True)
     else:
         env_wrapper = env
+
+    if len(sys.argv) > 4:
+        env.env.visualize = int(sys.argv[4]) == 1
+    if hasattr(env.env, 'reset_range'):
+        env.env.reset_range = 0.0
 
     sess = tf.InteractiveSession()
 
@@ -158,6 +216,7 @@ if __name__ == '__main__':
     avg_vels = []
     d=False
     step = 0
+    total_steps = 0
 
     save_qs = []
     save_dqs = []
@@ -165,7 +224,7 @@ if __name__ == '__main__':
 
     while ct < traj:
         if policy is not None:
-            ac, vpred = policy.act(step<0, o)
+            ac, vpred = policy.act(step<0, o)  # apply stochastic policy at the beginning
             act = ac
         else:
             act = env.action_space.sample()
@@ -198,17 +257,18 @@ if __name__ == '__main__':
 
         rew += r
 
-        env_wrapper.render()
+        if len(sys.argv) > 4:
+            if  env.env.visualize:
+                env_wrapper.render()
+        else:
+            env_wrapper.render()
         step += 1
+        total_steps += 1
 
         #time.sleep(0.1)
         if len(o) > 25:
             x_vel.append(env.env.robot_skeleton.dq[0])
 
-        if len(foot_contacts) > 400:
-            if np.random.random() < 0.03:
-                print('q ', np.array2string(env.env.robot_skeleton.q, separator=','))
-                print('dq ', np.array2string(env.env.robot_skeleton.dq, separator=','))
 
         #if np.abs(env.env.t - env.env.tv_endtime) < 0.01:
         #    save_qs.append(env.env.robot_skeleton.q)
@@ -242,97 +302,25 @@ if __name__ == '__main__':
             o=env_wrapper.reset()
             #break
     print('avg rew ', rew / traj)
-    print('total energy penalty: ', np.sum(action_pen)/traj)
+    print('avg energy penalty: ', np.sum(action_pen)/total_steps)
     print('total vel rew: ', np.sum(vel_rew)/traj)
 
-    if 'Walker' in sys.argv[1]: # measure SI for biped
-        l_contact_total = 0
-        r_contact_total = 0
-        for i in range(len(actions)):
-            l_contact_total += np.linalg.norm(actions[i][[0,1,2,3,4,5]])
-            r_contact_total += np.linalg.norm(actions[i][[6,7,8,9,10,11]])
-        print('total forces: ', l_contact_total, r_contact_total)
-        print('SI: ', 2*(l_contact_total-r_contact_total)/(l_contact_total+r_contact_total))
+    if len(sys.argv) > 2:
+        np.savetxt(save_directory+'/average_action_magnitude.txt', [np.sum(action_pen)/total_steps])
 
-    if len(save_qs) > 0 and save_init_state:
-        joblib.dump([save_qs, save_dqs], 'data/skel_data/init_states.pkl')
+        if 'Walker' in sys.argv[1]: # measure SI for biped
+            l_contact_total = 0
+            r_contact_total = 0
+            for i in range(len(actions)):
+                l_contact_total += np.linalg.norm(actions[i][[0,1,2,3,4,5]])
+                r_contact_total += np.linalg.norm(actions[i][[6,7,8,9,10,11]])
+            print('total forces: ', l_contact_total, r_contact_total)
+            print('SI: ', 2*np.abs(l_contact_total-r_contact_total)/(l_contact_total+r_contact_total))
 
-    if sys.argv[1] == 'DartWalker3d-v1' or sys.argv[1] == 'DartWalker3dSPD-v1':
-        rendergroup = [[0,1,2], [3,4,5, 9,10,11], [6,12], [7,8, 12,13]]
-        for rg in rendergroup:
-            plt.figure()
-            for i in rg:
-                plt.plot(np.array(actions)[:, i])
-    if sys.argv[1] == 'DartHumanWalker-v1':
-        rendergroup = [[0,1,2, 6,7,8], [3,9], [4,5,10,11], [12,13,14], [15,16,7,18]]
-        titles = ['thigh', 'knee', 'foot', 'waist', 'arm']
-        for i,rg in enumerate(rendergroup):
-            plt.figure()
-            plt.title(titles[i])
-            for i in rg:
-                plt.plot(np.array(actions)[:, i])
-    if sys.argv[1] == 'DartDogRobot-v1':
-        rendergroup = [[0,1,2], [3, 4,5], [6,7,8],[9,10,11]]
-        titles = ['rear right leg', 'rear left leg', 'front right leg', 'front left leg']
-        for i,rg in enumerate(rendergroup):
-            plt.figure()
-            plt.title(titles[i])
-            for i in rg:
-                plt.plot(np.array(actions)[:, i])
-    if sys.argv[1] == 'DartHexapod-v1':
-        rendergroup = [[0,1,2, 3,4,5], [6,7,8, 9,10,11], [12,13,14, 15,16,17]]
-        titles = ['hind legs', 'middle legs', 'front legs']
-        for i,rg in enumerate(rendergroup):
-            plt.figure()
-            plt.title(titles[i])
-            for i in rg:
-                plt.plot(np.array(actions)[:, i])
-    plt.figure()
-    plt.title('rewards')
-    plt.plot(rew_seq, label='total rew')
-    plt.plot(action_pen, label='action pen')
-    plt.plot(vel_rew, label='vel rew')
-    plt.plot(deviation_pen, label='dev pen')
-    plt.legend()
-    plt.figure()
-    plt.title('com z')
-    plt.plot(com_z)
-    plt.figure()
-    plt.title('x vel')
-    plt.plot(x_vel)
-    foot_contacts = np.array(foot_contacts)
-    plt.figure()
-    plt.title('foot contacts')
-    plt.plot(1-foot_contacts[:, 0])
-    plt.plot(1-foot_contacts[:, 1])
-    plt.figure()
-
-    if len(contact_force) > 0:
-        plt.title('contact_force')
-        plt.plot(np.array(contact_force)[:,0], label='x')
-        plt.plot(np.array(contact_force)[:,1], label='y')
-        plt.plot(np.array(contact_force)[:,2], label='z')
-        plt.legend()
-    plt.figure()
-    plt.title('ref_rewards')
-    plt.plot(ref_rewards)
-    plt.figure()
-    plt.title('ref_feat_rew')
-    plt.plot(ref_feat_rew)
-    plt.figure()
-    plt.title('average velocity')
-    plt.plot(avg_vels)
-    print('total ref rewards ', np.sum(ref_rewards))
-    print('total vel rewrads ', np.sum(vel_rew))
-    print('total action rewards ', np.sum(action_pen))
+            np.savetxt(save_directory + '/symmetry_index.txt', [2*np.abs(l_contact_total-r_contact_total)/(l_contact_total+r_contact_total)])
 
 
-    ################ save average action signals #################
-    avg_action = np.mean(np.abs(actions), axis=1)
-    np.savetxt('data/force_data/action_mean.txt', avg_action)
-    np.savetxt('data/force_data/action_std.txt', np.std(np.abs(actions), axis=1))
 
-    plt.show()
 
 
 

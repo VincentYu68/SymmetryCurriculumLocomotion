@@ -34,6 +34,7 @@ class DartHumanWalkerEnv(dart_env.DartEnv, utils.EzPickle):
         self.pos_spd = False # Use spd on position in forward direction. Only use when treadmill is used
         self.assist_timeout = 0.0  # do not provide pushing assistance after certain time
         self.assist_schedule = [[0.0, [2000, 2000]], [3.0, [1500, 1500.0]], [6.0, [1125, 1125]]]
+        self.reset_range = 0.005
 
         self.rand_target_vel = False
         self.init_push = False
@@ -501,8 +502,8 @@ class DartHumanWalkerEnv(dart_env.DartEnv, utils.EzPickle):
             init_q = self.init_qs[init_pid]
             init_dq = self.init_dqs[init_pid]
 
-        qpos = init_q + self.np_random.uniform(low=-.005, high=.005, size=self.robot_skeleton.ndofs)
-        qvel = init_dq + self.np_random.uniform(low=-.05, high=.05, size=self.robot_skeleton.ndofs)
+        qpos = init_q + self.np_random.uniform(low=-self.reset_range, high=self.reset_range, size=self.robot_skeleton.ndofs)
+        qvel = init_dq + self.np_random.uniform(low=-self.reset_range*10, high=self.reset_range*10, size=self.robot_skeleton.ndofs)
         s = np.sign(np.random.random()-0.5) * self.np_random.uniform(low=.005, high=.05)
         #qpos[1] += s
         #qpos[7] -= s

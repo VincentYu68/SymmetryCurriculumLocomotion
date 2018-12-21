@@ -37,7 +37,7 @@ class StaticGLUTWindow(GLUTWindow):
         return img.reshape(_width, _height)
 
     def getFrame(self):
-        self.runSingleStep()
+        self.scene.render(self.sim)
         data = GL.glReadPixels(0, 0,
                                self.window_size[0], self.window_size[1],
                                GL.GL_RGBA,

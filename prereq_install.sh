@@ -20,7 +20,8 @@ apt-get update \
     xpra \
     libav-tools  \
     python3-dev  \
-    libode-dev
+    libode-dev \
+    libopenmpi-dev
 
 
 sudo apt-get install -y build-essential cmake pkg-config git
@@ -37,6 +38,7 @@ apt-get install -y swig python-pip python-qt4 python-qt4-dev python-qt4-gl
 apt-get install -y python3-pip python3-pyqt4 python3-pyqt4.qtopengl
 
 pip3 install numpy
+pip3 install tensorflow
 
 echo "Start Dart Installation"
 
@@ -44,6 +46,7 @@ echo "Start Dart Installation"
 git clone https://github.com/dartsim/dart.git
 cd dart
 git checkout tags/v6.3.0
+cp ../external/lcp.cpp dart/external/odelcpsolver/lcp.cpp
 mkdir build && cd build
 cmake ..
 make -j4
@@ -55,6 +58,7 @@ echo "Start Pydart2 Installation"
 
 # install pydart
 git clone https://github.com/sehoonha/pydart2.git
+cp external/pydart2_draw.cpp pydart2/pydart2/
 cd pydart2
 python3 setup.py build build_ext
 sudo python3 setup.py develop
@@ -74,6 +78,9 @@ echo "Start DartEnv Installation"
 cd ../dart-env
 sudo pip3 uninstall -y gym
 sudo pip3 install -e .
+
+sudo pip3 install mpi4py
+sudo pip3 install matplotlib
 
 cd ..
 

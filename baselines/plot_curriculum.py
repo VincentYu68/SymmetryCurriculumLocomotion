@@ -1,7 +1,10 @@
 __author__ = 'yuwenhao'
 
+import matplotlib
+matplotlib.use('Agg')
+
 import gym
-import sys, os, time
+import sys, os, time, errno
 
 import joblib
 import numpy as np
@@ -13,13 +16,7 @@ import re
 np.random.seed(1)
 
 if __name__ == '__main__':
-    ############################## OLD APPROACH ##################################
-    # walking test
-    #basepolicy = 'data/ppo_DartWalker3d-v199_energy04_vel1_1s_mirrorreal4_velrew3_ab4_asinput_damping5_torque1x_anklesprint100_5_rotpen01_rew01xinit_1kassistance/'
-    #directory = 'data/ppo_curriculum_150eachit_vel1_runningavg3_e04_DartWalker3d-v1_99_0.8_0.6_2500/'
-
-    # running test
-    basepolicy = 'data/ppo_DartWalker3d-v193_energy03_vel5_3s_mirror4_velrew3_asinput_damping5_torque1x_anklesprint100_5_ab7_rotpen0_rew01xinit/'
+    '''basepolicy = 'data/ppo_DartWalker3d-v193_energy03_vel5_3s_mirror4_velrew3_asinput_damping5_torque1x_anklesprint100_5_ab7_rotpen0_rew01xinit/'
     directory = 'data/ppo_curriculum_150eachit_vel5_3s_runningavg3_e03_DartWalker3d-v1_0_0.8_0.6_2500/'
 
     learning_curve = []
@@ -64,7 +61,7 @@ if __name__ == '__main__':
 
     iteration_list.insert(0, 0)
     distance_metric.insert(0, distance_metric[0])
-    distance_metric = np.array(distance_metric)# / distance_metric[0]
+    distance_metric = np.array(distance_metric)# / distance_metric[0]'''
 
 
 
@@ -73,7 +70,15 @@ if __name__ == '__main__':
     #env_cent_directory = 'data/ppo_DartWalker3d-v1101_energy04_vel1_1s_mirror4_velrew3_ab4_anklesprint100_5_rotpen0_rew05xinit_stagedcurriculum4s75s34ratio/'
 
     # running learning
-    env_cent_directory = 'data/ppo_DartWalker3d-v1106_energy03_vel5_3s_mirror4_velrew3_damping5_anklesprint100_ab7_rotpen0_rew01xinit_stagedcurriculum4s75s12ratio_07rewthres/'
+    env_cent_directory = sys.argv[1]#'data/ppo_DartWalker3d-v1106_energy03_vel5_3s_mirror4_velrew3_damping5_anklesprint100_ab7_rotpen0_rew01xinit_stagedcurriculum4s75s12ratio_07rewthres/'
+
+    save_directory = env_cent_directory + '/stats'
+
+    try:
+        os.makedirs(save_directory)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
 
     envcent_learning_curve = []
     with open(env_cent_directory + '/progress.json') as data_file:
@@ -111,7 +116,7 @@ if __name__ == '__main__':
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(envcenteriteration_list, envcentdistance_metric, linewidth=2, label = 'Env-Cent Learning')
-    ax.plot(iteration_list, distance_metric, color='g', linewidth=2, label = 'Learner-Cent Learning')
+    #ax.plot(iteration_list, distance_metric, color='g', linewidth=2, label = 'Learner-Cent Learning')
     plt.legend()
 
     plt.title('Curriculum Progress', fontsize=14)
@@ -124,14 +129,14 @@ if __name__ == '__main__':
     for tick in ax.yaxis.get_major_ticks():
         tick.label.set_fontsize(13)
 
-
+    plt.savefig(save_directory+'/curriculum_progress.png')
 
     ###################### plot learning curve #############################
 
     fig2 = plt.figure()
     ax = fig2.add_subplot(1, 1, 1)
     ax.plot(envcent_learning_curve, linewidth=2, label='Env-Cent Learning')
-    ax.plot(learning_curve[0:iteration_list[-1]], color='g', linewidth=2, label='Learner-Cent Learning')
+    #ax.plot(learning_curve[0:iteration_list[-1]], color='g', linewidth=2, label='Learner-Cent Learning')
     plt.legend()
 
     plt.title('Learning Curve', fontsize=14)
@@ -144,16 +149,16 @@ if __name__ == '__main__':
     for tick in ax.yaxis.get_major_ticks():
         tick.label.set_fontsize(13)
 
-
+    plt.savefig(save_directory + '/learning_curve.png')
     ##################### plot curriculum path #############################
 
     fig3 = plt.figure()
 
     ax = fig3.add_subplot(1, 1, 1)
     envcentcurriculum_list = np.array(envcentcurriculum_list)
-    curriculum_list = np.array(curriculum_list)
+    #curriculum_list = np.array(curriculum_list)
     ax.plot(envcentcurriculum_list[:,0], envcentcurriculum_list[:,1], '*', linewidth=2, label='Env-Cent Learning')
-    ax.plot(curriculum_list[:,0], curriculum_list[:,1], '+g', linewidth=2, label='Learner-Cent Learning')
+    #ax.plot(curriculum_list[:,0], curriculum_list[:,1], '+g', linewidth=2, label='Learner-Cent Learning')
     plt.legend()
 
     plt.title('Curriculum Path', fontsize=14)
@@ -166,7 +171,7 @@ if __name__ == '__main__':
     for tick in ax.yaxis.get_major_ticks():
         tick.label.set_fontsize(13)
 
-    plt.show()
+    plt.savefig(save_directory + '/curriculum_path.png')
 
 
 

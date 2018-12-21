@@ -294,6 +294,8 @@ class DartHexapodEnv(dart_env.DartEnv, utils.EzPickle):
         qpos = self.robot_skeleton.q + self.np_random.uniform(low=-.005, high=.005, size=self.robot_skeleton.ndofs)
         qvel = self.robot_skeleton.dq + self.np_random.uniform(low=-.05, high=.05, size=self.robot_skeleton.ndofs)
 
+        qpos[3] += 0.2
+
         self.target_vel = self.init_tv
         if self.init_push:
             qvel[0] = self.target_vel
