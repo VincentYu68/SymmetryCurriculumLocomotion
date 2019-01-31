@@ -73,15 +73,10 @@ cd pydart2
 python3 setup.py build build_ext
 sudo python3 setup.py develop
 
-export PYTHONPATH=$PWD:$PYTHONPATH
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-
 echo "Start Baselines Installation"
 
 cd ../baselines
 sudo pip3 install -e .
-
-export PYTHONPATH=$PWD:$PYTHONPATH
 
 echo "Start DartEnv Installation"
 
@@ -93,5 +88,8 @@ sudo pip3 install mpi4py
 sudo pip3 install matplotlib
 
 cd ..
+
+echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export PYTHONPATH=$PWD:$PYTHONPATH' >> ~/.bashrc
 
 echo "Installation Done"
