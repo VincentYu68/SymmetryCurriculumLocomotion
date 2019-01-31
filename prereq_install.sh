@@ -3,8 +3,18 @@
 
 echo "Install pre-requisites"
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    if [[ `lsb_release -rs` == "14.04" ]]; then
+        sudo apt-get install -y libav-tools
+    else
+        sudo apt-get install -y ffmpeg
+    fi
+else
+    echo "OS version not tested yet"
+fi
+
 apt-get update \
-    && apt-get install -y libav-tools \
+    && apt-get install -y\
     python-setuptools \
     libpq-dev \
     libjpeg-dev \
@@ -18,13 +28,12 @@ apt-get update \
     unzip \
     git \
     xpra \
-    libav-tools  \
     python3-dev  \
     libode-dev \
     libopenmpi-dev
 
 
-sudo apt-get install -y build-essential cmake pkg-config git
+sudo apt-get install -y build-essential cmake pkg-config git ffmpeg
 sudo apt-get install -y libeigen3-dev libassimp-dev libccd-dev libfcl-dev libboost-regex-dev libboost-system-dev
 sudo apt-get install -y libopenscenegraph-dev
 sudo apt-get install -y libbullet-dev
