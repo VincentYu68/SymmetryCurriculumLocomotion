@@ -3,6 +3,8 @@
 
 echo "Install pre-requisites"
 
+apt-get update
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [[ `lsb_release -rs` == "14.04" ]]; then
         sudo apt-get install -y libav-tools
@@ -13,8 +15,7 @@ else
     echo "OS version not tested yet"
 fi
 
-apt-get update \
-    && apt-get install -y\
+apt-get install -y\
     python-setuptools \
     libpq-dev \
     libjpeg-dev \
