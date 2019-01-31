@@ -2,19 +2,6 @@
 
 This is code for our paper: https://arxiv.org/abs/1801.08093
 
-## Setup
-
-The code consists of two parts: dart-env, which is an extension of OpenAI Gym that uses Dart for rigid-body simulation, and baselines, which is adapted from OpenAI Baselines.
-
-To install dart-env, follow the instructions at: https://github.com/DartEnv/dart-env/wiki.
-
-To install baselines, execute the following:
-
-```bash
-cd baselines
-pip install -e .
-```
-
 ## Install from script
 
 The script below has been tested on a clean Ubuntu 16.04 computer.
@@ -24,6 +11,27 @@ sudo -s
 source prereq_install.sh
 exit
 ```
+
+## Manual Install
+
+The code consists of two parts: dart-env, which is an extension of OpenAI Gym that uses Dart for rigid-body simulation, and baselines, which is adapted from OpenAI Baselines. Both libraries are included in the repository so you will not need to install the original library.
+
+To install dart-env, you need to install Dart and Pydart, follow the instructions at: https://github.com/DartEnv/dart-env/wiki for installing these two packages. After installing Dart and Pydart, install dart-env by:
+
+```bash
+cd dart-env
+pip install -e .
+```
+
+
+To install baselines, execute the following:
+
+```bash
+cd baselines
+pip install -e .
+```
+
+
 
 ## How to use
 
