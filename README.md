@@ -4,7 +4,7 @@ This is code for our paper: https://arxiv.org/abs/1801.08093
 
 ## Install from script
 
-The script below has been tested on a clean Ubuntu 16.04 computer.
+The script below has been tested on clean Ubuntu 16.04/18.04 computers.
 
 ```bash
 sudo -s
@@ -35,22 +35,18 @@ pip install -e .
 
 ## How to use
 
-To test the code on a biped walking robot, run the following command from the project directory:
-
-```bash
-mpirun -np 8 python -m baselines.ppo1.run_walker3d_staged_learning
-```
+Example scripts for training and testing the policies are provided in [siggraph_script](siggraph_script/). The specific python code corresponding to each script can be found [here](baselines/baselines/siggraph).
 
 The training results will be saved to data/. The final policy is saved as policy_params.pkl. You can also find the intermediate policies in the folders organized by the corresponding curriculums. To test a policy, run:
 
 ```bash
-python test_policy.py ENV_NAME PATH_TO_POLICY
+python baselines/test_policy.py ENV_NAME PATH_TO_POLICY
 ```
 
 To visualize the learning curve, run:
 
 ```bash
-python plot_benchmark.py PATH_TO_FOLDER
+python baselines/plot_benchmark.py PATH_TO_FOLDER
 ```
 
 
