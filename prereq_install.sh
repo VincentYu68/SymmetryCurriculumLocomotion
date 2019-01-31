@@ -72,6 +72,7 @@ cp external/pydart2_draw.cpp pydart2/pydart2/
 cd pydart2
 python3 setup.py build build_ext
 sudo python3 setup.py develop
+echo 'export PYTHONPATH=$PWD:$PYTHONPATH' >> ~/.bashrc
 
 echo "Start Baselines Installation"
 
@@ -90,6 +91,5 @@ sudo pip3 install matplotlib
 cd ..
 
 echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export PYTHONPATH=$PWD:$PYTHONPATH' >> ~/.bashrc
 
 echo "Installation Done"
